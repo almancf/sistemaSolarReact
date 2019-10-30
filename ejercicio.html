@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .imagen{
+            width: 400px;
+        }
+        main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            color: white;
+        }
+        body{
+            background-color: black;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            color: white;
+        }
+        header img{
+            width: 100px;
+        }
+        footer{
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.5em;
+            color:white;
+        }
+        .planetas{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenido"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        let sistemaSolar = {
+            planetas: [
+                {
+                    nombre: "mercurio",
+                    color: "gris",
+                    imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Mercury_in_color_-_Prockter07_centered.jpg/1024px-Mercury_in_color_-_Prockter07_centered.jpg"
+                },
+                {
+                    nombre: "venus",
+                    color: "blanco",
+                    imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venus-real_color.jpg/220px-Venus-real_color.jpg"
+                },
+                {
+                    nombre: "tierra",
+                    color: "azul",
+                    imagen: "https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/article/5a0ab2a75bafe87f4d3f9a63/acaba-tiempo_0.jpg"
+                },
+                {
+                    nombre: "marte",
+                    color: "rojo",
+                    imagen: "https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/article/55365b6b34099b0279c8fb2e/slide-marte.jpg"
+                },
+                {
+                    nombre: "jupiter",
+                    color: "marrón",
+                    imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jupiter_by_Cassini-Huygens.jpg/280px-Jupiter_by_Cassini-Huygens.jpg"
+                },
+                {
+                    nombre: "saturno",
+                    color: "amarillo",
+                    imagen: "https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/article/558d2b15010e26221b57df75/saturno.jpg"
+                },
+                {
+                    nombre: "urano",
+                    color: "azul",
+                    imagen: "http://www.manzanares.es/v2/sites/paseo/img/urano/urano1.jpg"
+                },
+                {
+                    nombre: "neptuno",
+                    color: "azul",
+                    imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/280px-Neptune_Full.jpg"
+                }
+            ]
+        };
+
+        function Cabecera() {
+            return(
+                <header>
+                    <div>
+                    <img src="kisspng-earth-m-02j71-logo-computer-icons-planeta-tierra-5b3d800714de56.0385142115307571270855.png" alt="logo" />
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="#">opcion 1</a></li>
+                            <li><a href="#">opcion 2</a></li>
+                            <li><a href="#">opcion 3</a></li>
+                        </ul>
+                    </div>
+                </header>
+            );
+        }
+
+        function Footer () {
+            return (
+                <footer>
+                    <div>
+                        <p>Footer izquierda</p>
+                    </div>
+                    <div>
+                        <p>Footer derecha</p>
+                    </div>
+                </footer>
+            );
+        }
+
+        function Planeta(props) {
+            return (
+                <div className="planetas">
+                    <h1>{props.nombre}</h1>
+                    <img className="imagen" src={props.imagen} />
+                    <p>{props.color}</p>
+                </div>
+            );
+        }
+
+        function Contenido() {
+            return (
+            <main>
+            {sistemaSolar.planetas.map(function (infoPlanetas) {
+                return(
+                <Planeta
+                    nombre={infoPlanetas.nombre}
+                    imagen={infoPlanetas.imagen}
+                    color={infoPlanetas.color}
+                />
+                );
+            })}
+            </main>
+            );
+        }
+
+        function Web() {
+            return(
+            <div>
+                <Cabecera />
+                <Contenido />
+                <Footer />
+            </div>
+            );
+        }
+
+        ReactDOM.render(<Web />, document.getElementById('contenido'));
+
+    </script>
+</body>
+
+</html>
